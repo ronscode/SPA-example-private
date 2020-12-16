@@ -17,11 +17,13 @@ app.use(
 /// ** -- ROUTES -- ** ///
 
 // GET Home page which renders the index.ejs template. No data needed for plain HTML.
+
 app.get("/", function (req, res) {
 	res.render("pages/index");
 });
 
 // POST a new employee route
+
 app.post("/add", function (req, res) {
 	// Uncomment the console log below to see your form data
 	// console.log(console.log(req.body))
@@ -44,7 +46,7 @@ app.post("/add", function (req, res) {
 			console.log(error);
 		});
 
-	res.send("Hello Universe!");
+	res.redirect("/directory");
 });
 
 // GET Directory of employees, returns an array of objects from the server.
@@ -55,6 +57,7 @@ app.get("/directory", function (req, res) {
 	};
 	axios(config)
 		.then(function (employees) {
+			// View
 			// console.log("THE EMPLOYEES ARE " , Object.entries(employees) );
 			var employees = Object.entries(employees.data);
 			console.log("new employees are ", employees);
@@ -76,7 +79,7 @@ app.get("/about", function (req, res) {
 });
 
 // Single Employee
-app.get("/users/:uid", function (req, res) {
+app.get("/directory/:uid", function (req, res) {
 	console.log("The empUID is ", req.params);
 	empUID =
 		"https://spaexample-f6590-default-rtdb.firebaseio.com/data/" +
@@ -102,36 +105,13 @@ app.get("/users/:uid", function (req, res) {
 		});
 });
 
-// Add a Employee
-// Home page, just a page with text
+// GET Add new employee form (the post route is part of the form which we have to GET first. The forms "submit" button handles the POST request.
+
 app.get("/add", function (req, res) {
 	res.render("pages/post_user");
 });
-// // Get comments from Firebase
-// // GET method route
-// app.get('/comments', function (req, res) {
-// var config = {
-//   method: 'get',
-//   url: 'https://spaexample-f6590-default-rtdb.firebaseio.com/comments/.json',
-//   headers: { }
-// };
 
-// axios(config)
-// .then(function (response) {
-//   //console.log(JSON.stringify(response.data));
-// return response.data
-// }).then((response) => {
-//   console.log("Response x2", response)
-//   res.render('/pages/comments')
-// })
-// .catch(function (error) {
-//   console.log(error);
-// });
+// Express's .listen method is the final part of Express that fires up the server on the assigned port and starts "listening" for request from the app! (boilerplate code from the docs)
 
-// })
-
-//let theForm = document.getElementById("comment-form");
-//console.log(theForm)
-
-app.listen(5000);
-console.log("Space Port 5000 is open");
+app.listen(2001);
+console.log("Space Port Odyssey 2001 is open");
