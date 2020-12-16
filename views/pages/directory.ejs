@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1>Top employees</h1>            
+            <div class="row justify-content-center">
+                <% employees.forEach(function(employee) { %>
+                
+                    <div class="col-3 p-2 m-1">
+                      <img src="<%= employee[1].picture %>">
+                        <h4> <%= employee[1].firstName %> <%= employee[1].lastName %></h4>
+                        <p>Email: <%= employee[1].email %></p>
+                        <a href="users/<%= employee[0] %> " class="btn btn-primary">View Profile</a>
+                      </div>
+                    
+                <% }); %>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>

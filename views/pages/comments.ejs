@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <div class="container pt-5">
+            <h1>POST and DELETE using Firebase Example</h1>
+            <p>These are comments loaded from a Firebase database. </p>
+            <p>GET ROUTE: <code>https://your-firebase-url-goes-here.firebaseio.com/comments/.json</code></p>
+            <p>Which is the same route as the DELETE with the unique ID from Firebase added on</p>
+            <p>DELETE ROUTE: <code>https://your-firebase-url-goes-here.firebaseio.com/comments/${id_from_Firebase}.json</code></p>
+
+         <div class="bg-light p-2 rounded border my-5">
+          <h2>Comments From Firebase</h2>
+          <ul>
+          <% comments.forEach(function(comment) { %>
+            
+                <li><%= comment[1].comment %>  <a href="/comments/remove/<%= comment[0] %>" >Delete comment</a></li>
+        <% }); %>
+            </ul>
+            <form id="comment-form" action="/comments/add" method="post">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Your Comment:</label>
+                <input type="text" class="form-control" id="site_comment" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Please leave a motivational quote or comment for our team.</div>
+              </div>
+            
+            
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+         </div>
+         <h3>Hurdles to Solve</h3>
+         <p>Your routes are like addresses that GET information and render each template with the response.</p>
+         <ul>
+           <li>First make sure you have a working route and view, like  <code>localhost:5000/comments</code> that will render just plain HTML without any template literals</li>
+           <li>Now you have somewhere to render the data from the API routes</li>
+           <li>Test your API using Postman before trying to render any data with your SPA</li>
+           <li>Inside your new working route like "/comments" try to console log the API response</li>
+           <li>Now pass this data into your template. Check out the Handlebars docs for an example.</li>
+         </ul>
+              
+             <p> Jelly beans cake cotton candy fruitcake jujubes. Marzipan pudding sugar plum chocolate cake marshmallow icing chocolate bar jujubes brownie. Candy jelly-o jujubes liquorice donut pudding. Dragée halvah lollipop. Cake chocolate cake cheesecake. Muffin dragée cookie chocolate cake I love. Sweet gummies I love gummi bears. Chocolate lollipop candy jelly beans caramels icing topping biscuit. Ice cream sugar plum bonbon. Cookie muffin sesame snaps bear claw halvah. Oat cake croissant jujubes caramels cake. Cotton candy fruitcake lemon drops I love. Halvah tart fruitcake tootsie roll cotton candy cake I love cookie chupa chups. Gummi bears jelly sesame snaps. </p>
+        </div>
+    </main>
+
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+
+</body>
+</html>
